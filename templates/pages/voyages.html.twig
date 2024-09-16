@@ -1,4 +1,35 @@
 {% extends "basefront.html.twig" %}
 {% block body %}
-    <h1>Page des voyages</h1>
+    <table class = 'table table-striped'>
+        <thead>
+            <tr>
+                <th class = 'text-left'>Ville</th>
+                <th class = 'text-left'>Pays</th>
+                <th class = 'text-end'>Note</th>
+                <th class = 'text-center'>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for visite in visites %}
+                <tr>
+                    <td>
+                        <h5 class = 'text-primary'>{{ visite.ville }}</h5>
+                    </td>
+                    <td>
+                        {{ visite.pays }}
+                    </td>
+                    <td class = 'text-end'>
+                        {% if visite.note < 10 %}
+                            <div class = 'text-danger'><strong>{{ visite.note }} / 20</strong></div>
+                        {% else %}
+                            <div class = 'text-success'><strong>{{ visite.note }} / 20</strong></div>
+                        {% endif %}
+                    </td>
+                    <td class = 'text-center'>
+                        {{ visite.datecreationstring }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}    
