@@ -22,4 +22,31 @@ class VisiteRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Visite::class);
     }
+    /**
+     * Retourne toutes les visites triées sur un champ
+     * @param string champ
+     * @param string ordre
+     * @return Visite[]  
+     */
+    public function findAllOrderBy($champ, $ordre) : array
+    {
+        return $this->createQueryBuilder("v")->orderBy("v." . $champ, $ordre)->getQuery()->getResult();
+    }
+    /**
+     * Retourne les visites selon un critère d'égalité ou une relation d'ordre
+     * @param mixed $champ
+     * @param mixed $valeur
+     * @return Visite[]
+     */
+    public function findByEqualValue($champ, $valeur) : array 
+    {
+        if($valeur != "")
+        {
+            return $this->createQueryBuilder("v")->where("v." . $champ . "=:valeur")->setParameter('valeur', $valeur)->orderBy('v.datecreation', 'DESC')->getQuery()->getResult();
+        }
+        else 
+        {
+            return $this->createQueryBuilder('v')->orderBy('v.' . $champ, 'ASC')->getQuery()->getResult();    
+        }
+    }
 }
