@@ -49,4 +49,14 @@ class VisiteRepository extends ServiceEntityRepository
             return $this->createQueryBuilder('v')->orderBy('v.' . $champ, 'ASC')->getQuery()->getResult();    
         }
     }
+    /**
+     * Supprime la ligne correspondant à l'objet passé en paramètre dans la base de données
+     * @param Visite $visite
+     * @return void
+     */
+    public function remove(Visite $visite) : void 
+    {
+        $this->getEntityManager()->remove($visite);
+        $this->getEntityManager()->flush();
+    }
 }
