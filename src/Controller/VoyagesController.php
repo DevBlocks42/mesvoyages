@@ -48,5 +48,4 @@ class VoyagesController extends AbstractController
         $visite = $this->repository->find($id);
         return $this->render('pages/voyage.html.twig', ['visite' => $visite]);
     }
-
 }
