@@ -11,6 +11,10 @@
                 <h2 class = 'text-danger mt-5'>{{ visite.note }} / 20</h2>
             {% endif %}
             <h5 class = 'mt-5'>température entre {{ visite.tempmin }}°C et {{ visite.tempmax }}°C </h5>
+            <p class = 'mt-5'><strong>Environnements : </strong></p>
+            {% for env in visite.environnements %}
+                {{ env.nom }}
+            {% endfor %}
         </div>
         <div class = 'col' id = 'photo'>
 
