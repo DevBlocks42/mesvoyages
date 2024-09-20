@@ -4,4 +4,14 @@
     {{ form_start(formvisite) }}
 
     {{ form_end(formvisite) }}
+    <div class = 'col'>
+        <div>
+            image actuelle 
+            {% if visite.imagename %}
+                <img class = 'card-img-top' style = 'width: 100%; height: auto;' src = '{{ app.request.getBasePath()~vich_uploader_asset(visite, 'imageFile') }}'>
+            {% else %}
+                <p>aucune image</p>
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}

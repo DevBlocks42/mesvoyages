@@ -17,7 +17,14 @@
             {% endfor %}
         </div>
         <div class = 'col' id = 'photo'>
-
+            <div>
+                image 
+                {% if visite.imagename %}
+                    <img class = 'card-img-top' style = 'width: 100%; height: auto;' src = '{{ app.request.getBasePath()~vich_uploader_asset(visite, 'imageFile') }}'>
+                {% else %}
+                    <p>aucune image</p>
+                {% endif %}
+            </div>
         </div>
    </div>
    <div class = 'row mt-5'>
