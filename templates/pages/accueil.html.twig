@@ -1,4 +1,27 @@
 {% extends "basefront.html.twig" %}
 {% block body %}
-    <h1>Page d'accueil</h1>
+    <h1>Bienvenue sur mon site personnel de présentation de mes voyages</h1><br>
+    <p>Voici les deux derniers voyages</p>
+    <div class = 'container'>
+        <div class="row align-items-start">
+            {% for visite in visites %}
+                <div class = 'col'>
+                    <div class = 'container'>
+                        <img style = 'width: 100%; height: auto;' src = '{{ app.request.getBasePath()~vich_uploader_asset(visite, 'imageFile') }}'><br>
+                        {{ visite.datecreationstring }}<br>
+                        <a href = '{{ path('voyages.showOne', {id: visite.id}) }}'>{{ visite.ville }}</a><br>
+                        {{ visite.pays }}<br>
+                        {{ visite.note }} / 20<br>
+                        t° entre {{ visite.tempmin }} et {{ visite.tempmax }}°C<br>
+                        {% if visite.environnements|length > 0 %}
+                            Environnements : 
+                            {% for env in visite.environnements %}
+                                {{ env.nom }}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}    
